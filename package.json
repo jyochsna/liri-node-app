@@ -1,0 +1,22 @@
+{
+  "name": "liri-node-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "liri"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jyochsna/liri-node-app.git"
+  },
+  "keywords": [
+    "lirigo"
+  ],
+  "author": "josna",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jyochsna/liri-node-app/issues"
+  },
+  "homepage": "https://github.com/jyochsna/liri-node-app#readme"
+}
