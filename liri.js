@@ -24,24 +24,37 @@ console.log(bandsInTownKey);
 var command = process.argv[2];
 var search = process.argv.slice(3).join(" ");
 
- 
-// spotify.search({ 
-//     type: 'track',
-//      query: 'All the Small Things' }, function(err, data) {
-//     if (err) {
-//       return console.log('Error occurred: ' + err);
-//     }
-   
-//   console.log(data); 
-//   });
+
 
    concert=()=>{
       var bandsInTownURL = "https://rest.bandsintown.com/artists/" + search + "/events?app_id=" + bandsInTownKey;
       axios.get(bandsInTownURL)
-      .then (function (response){
+      .then ( (response) => {
+          var results = response.data
+          if (results.length === 0) {
+              console.log("It looks like" + search + "is not performing. Try a different artist")
+          }else{
+              console.log("\nUpcoming shows for: " + search + "\n");
+          }for (var i = 0; i < response.data.length; i++){
+              var eventDate = moment(response.data[i])
+          }
           console.log("----");
           console.log(response);
       })
   }
+
+
+
+//for spotify
+ 
+spotify.search({ 
+    type: 'track',
+     query: 'All the Small Things' }, function(err, data) {
+    if (err) {
+      return console.log('Error occurred: ' + err);
+    }
+   
+  console.log(data); 
+  });
 
   concert();
