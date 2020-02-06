@@ -8,14 +8,18 @@ var fs = require("fs");
 
 //for keys.js file
 var keys = require("./keys.js");
+console.log("KEYS BELOW")
+console.log(keys.APIKeys.omdb_key)
 
 //initialize spotify
-var spotify = new Spotify(keys.spotify);
-var spotifyRequire = require("node-spotify-api");
+// var spotify = new Spotify(keys.spotify);
+// var spotifyRequire = require("node-spotify-api");
 
 //omdb and bandsInTown API
 var omdbKey = keys.omdb;
-var bandsInTownKey = keys.bandnpsInTownKey;
+var bandsInTownKey = keys.APIKeys.band_key;
+console.log("---test---")
+console.log(bandsInTownKey);
 
 var command = process.argv[2];
 var search = process.argv.slice(3).join(" ");
@@ -31,11 +35,13 @@ var search = process.argv.slice(3).join(" ");
 //   console.log(data); 
 //   });
 
-  function concert(){
-      var bandsInTownURL = "https://rest.bandsintown.com/artists/" + search + "/events?app_id=codingbootcamp";
+   concert=()=>{
+      var bandsInTownURL = "https://rest.bandsintown.com/artists/" + search + "/events?app_id=" + bandsInTownKey;
       axios.get(bandsInTownURL)
       .then (function (response){
           console.log("----");
           console.log(response);
       })
   }
+
+  concert();
