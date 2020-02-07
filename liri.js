@@ -45,30 +45,65 @@ concert = () => {
                 console.log("Venue Location: " + results[i].venue.city + "," + results[i].venue.country);
                 console.log("Event Date: " + eventDate);
             }
-
-
+        })
+    }
+    getSpotify=()=>{
+        if(inputSearch === ""){
+            spotify.search({ type: "track", query: "The Sign"}, function(err, data){
+                if (err){
+                    return console.log(err);
+                }
+                console.log("\nYou didn't enter a song to search");
+                console.log("\n...You might like...\n");
+                console.log("Artist Name: " + data.tracks.items[4].artists.name)
+                console.log("Song's Name: " + data.tracks.items[4].name)
+                console.log("Song's Preview Link: " + data.tracks.items[4].previe_url);
+                console.log("Album Name: " + data.tracks.items[4].album.name);
+                console.log("\n--------\n");
+            })
+        } else {
+            spotify.search({ type:"track", query: inputSearch}, function(err, data){
+                if (err){
+                    return console.log("error occurred: " + err);
+                }
+                console.log("\n---songs information---\n");
+                var songs = data.tracks.items;
+                for (var i=0; i<songs.length; i++ ){
+                    console.log("Artist Name:" + songs[i].artists[0].name )
+                    console.log("Song's Name: " + songs[i].name);
+                    console.log("Song's Preview Link: " + songs[i].preview_url);
+                    console.log("Album Name: " + songs[i].album.name);
+                    console.log("\n-----\n");
+                }
+            });
+        }
+    };
+getSpotify();
 
            
-        })
-}
+  
 
 
 
 
-// //for spotify
+
+// //for test spotify
 // getSpotify=()=>{
 // spotify.search({ 
 //     type: 'track',
-//      query: search }, function(err, data) {
+//      query: inputSearch }, function(err, data) {
 //     if (err) {
 //       return console.log('Error occurred: ' + err);
 //     }else{
 //     console.log(data);
 //     }
 //     var songs = data.tracks.items;
-//     for(var i =0; i<songs.length; i++) 
-//   });
-// }
+//     for(var i =0; i<songs.length; i++) {
+//         console.log(songs[i])
+//     }
+//      }
+// )
+//     }
 //  getSpotify();
 // //for movie
 // movieThis=()=>{
@@ -91,4 +126,4 @@ concert = () => {
 // doWhatItSays = () =>{
 
 // }
-concert();
+// concert();
