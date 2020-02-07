@@ -24,19 +24,19 @@ console.log("---test---")
 console.log(bandsInTownKey);
 
 var command = process.argv[2];
-var search = process.argv.slice(3).join(" ");
+var inputSearch = process.argv.slice(3).join(" ");
 
 
 
 concert = () => {
-    var bandsInTownURL = "https://rest.bandsintown.com/artists/" + search + "/events?app_id=" + bandsInTownKey;
+    var bandsInTownURL = "https://rest.bandsintown.com/artists/" + inputSearch + "/events?app_id=" + bandsInTownKey;
     axios.get(bandsInTownURL)
         .then((response) => {
             var results = response.data
             if (results.length === 0) {
-                console.log("It looks like " + search + "is not performing. Try a different artist")
+                console.log("It looks like " + inputSearch + "is not performing. Try a different artist")
             } else {
-                console.log("\nUpcoming shows for: " + search + "\n");
+                console.log("\nUpcoming shows for: " + inputSearch + "\n");
 
             } for (var i = 0; i < results.length; i++) {
 
@@ -48,10 +48,10 @@ concert = () => {
 
 
 
-            console.log("----");
-            //  b
+           
         })
 }
+
 
 
 
