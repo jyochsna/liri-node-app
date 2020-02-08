@@ -78,8 +78,43 @@ concert = () => {
             });
         }
     };
-getSpotify();
+// getSpotify();
 
+getMovie = ()=>{
+    if(inputSearch ===""){
+        console.log("\nPlease enter a Movie name to search");
+        console.log("\n--Here is one suggestion for you--\n");
+        console.log("If you haven't watched \"Mr Nobody\", then you should:");
+        console.log("<http://www.imdb.com/title/tt0485947/>");
+        console.log("It's on Netflix!");
+    } else{
+        var movieUrl = "https://www.omdbapi.com/?apikey=" + "trilogy"+ "&t=" + inputSearch;
+        axios.get(movieUrl).then((response)=>{
+            var results = response.data;
+            console.log("\n-----Movie Result------\n");
+            console.log("Movie Title: " + results.Title);
+            console.log("Release Year: " + results.Year);
+            console.log("Imdb Rating: " + results.Ratings.imdbRating );
+            console.log("Rotten Tomatoes Rating: " + results.Ratings[1].Value);
+            console.log("Country of Production: " + results.Country);
+            console.log("Language: " + results.Language);
+            console.log("Plot: " + results.Plot);
+            console.log("Actors: " + results.Actors);
+            
+        })
+        .catch((err) =>{
+            console.log(err);
+        })
+    }
+};
+
+
+     getMovie();       
+
+           
+           
+          
+           
            
   
 
