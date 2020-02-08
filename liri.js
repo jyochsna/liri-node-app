@@ -24,10 +24,16 @@ console.log("---test---")
 console.log(bandsInTownKey);
 
 var command = process.argv[2];
+
 var inputSearch = process.argv.slice(3).join(" ");
 
 
+//Take in following commands
 
+
+
+
+//get concert function
 concert = () => {
     var bandsInTownURL = "https://rest.bandsintown.com/artists/" + inputSearch + "/events?app_id=" + bandsInTownKey;
     axios.get(bandsInTownURL)
@@ -46,7 +52,9 @@ concert = () => {
                 console.log("Event Date: " + eventDate);
             }
         })
-    }
+    };
+
+    // Spotify Function
     getSpotify=()=>{
         if(inputSearch === ""){
             spotify.search({ type: "track", query: "The Sign"}, function(err, data){
@@ -79,7 +87,7 @@ concert = () => {
         }
     };
 // getSpotify();
-
+// Movie Function
 getMovie = ()=>{
     if(inputSearch ===""){
         console.log("\nPlease enter a Movie name to search");
@@ -107,9 +115,60 @@ getMovie = ()=>{
         })
     }
 };
+// getMovie();  
+//do-what-it-says function
+doWhatItSays =()=>{
+    fs.readFile("random.txt", "utf8", function(err,data){
+        if(err){
+            console.log(err);
+
+        }else{
+            var txtArray = data.split(",");{
+                if(txtArray[0] === "spotify-this-song"){
+                    spotify.search({type:"track", query: txtArray[1]}, function(err,data){
+                        if (err){
+                            console.log(err);
+                        }else{
+                            console.log("Artist Name : " + data.tracks.items[0].artists[0].name)
+                            console.log("Song Title : " + data.tracks.items[0].name)
+                             console.log("Song preview url : " + data.tracks.items[0].preview_url);
+                            console.log("Album name : " + data.tracks.items[0].album.name);
+                             console.log("\n--------------\n");
+                        }
+                    })
+                }
+            }
+        }
+    })
+};
+// liri function
+runLiri = ()=>{
+    if(!command){
+        console.log("\nEnter one of the following Commands to search\n");
+        console.log("\n node liri.js movie-this \"Movie Title\" ");
+        console.log("\n node liri.js concert-this \"Artist Name\" ");
+        console.log("\n node liri.js spotify-this-song \"Song Title\" ");
+        console.log("\n node liri.js do-what-it-says: ");
+    }else if(command === "movie-this"){
+        getMovie();
+
+    }else if(command === "concert-this"){
+        if(inputSearch){
+            concert();
+        }else {
+            console.log("Enter an Artist to find where they're performing next!");
+    }
+       
+    }else if(command === "spotify-this-song"){
+        getSpotify();
+    }else if(command === "do-what-it-says"){
+        doWhatItSays();
+    }
+};
+runLiri();
 
 
-     getMovie();       
+         
 
            
            
