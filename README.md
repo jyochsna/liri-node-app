@@ -49,6 +49,7 @@ This will output the following information to your terminal/bash window:
     * Plot of the movie.
     * Actors in the movie.
 If the user doesn't type a movie in, the program will output data for the movie 'Mr. Nobody.'
+
 ![results](assets/images/movies.gif)
 
 3. node liri.js concert-this <artist/band name here>
@@ -64,6 +65,8 @@ A preview link of the song from Spotify
 The album that the song is from
 
 If no song is provided then your program will default to "The Sign" by Ace of Base.
+
+![results](assets/images/concert.gif)
 
 4. node liri.js do-what-it-says
 
