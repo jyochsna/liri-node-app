@@ -73,3 +73,5 @@ If no song is provided then your program will default to "The Sign" by Ace of Ba
 Using the fs Node package, LIRI will take the text inside of random.txt and then use it to call one of LIRI's commands.
 
 Because of what's currently in the random.txt file, it should run spotify-this-song for "I Want it That Way," as follows the text in random.txt.
+
+Copyright &copy; 2020 | Jyochsna Gongal
